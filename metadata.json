@@ -1,0 +1,8 @@
+{
+  "name": "letter-assistan with role card",
+  "description": "Professional correspondence studio for calibrating tone, precision, and clarity in formal business letters and memorandums.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
