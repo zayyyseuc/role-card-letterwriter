@@ -19,32 +19,12 @@ interface ToneCalibratorProps {
   onRevertToOriginal: () => void;
 }
 
-const TONE_OPTIONS: { id: ToneType; label: string; desc: string }[] = [
-  {
-    id: 'Executive & Decisive',
-    label: 'Executive & Decisive',
-    desc: 'Crisp, authoritative prose that commands confidence for board and leadership decisions.',
-  },
-  {
-    id: 'Courteous & Diplomatic',
-    label: 'Courteous & Diplomatic',
-    desc: 'Tactful, relationship-preserving framing for delicate negotiations or unexpected changes.',
-  },
-  {
-    id: 'Firm & Contractual',
-    label: 'Firm & Contractual',
-    desc: 'Unambiguous boundaries, contractual precision, and formal breach/cure notices.',
-  },
-  {
-    id: 'Warm & Gracious',
-    label: 'Warm & Gracious',
-    desc: 'Cordial appreciation, strategic commendations, and trust-deepening executive outreach.',
-  },
-  {
-    id: 'Direct & Objective',
-    label: 'Direct & Objective',
-    desc: 'Neutral, fact-forward briefing without rhetorical ornamentation or emotional charge.',
-  },
+const TONE_OPTIONS: { id: ToneType; label: string }[] = [
+  { id: 'Executive & Decisive', label: 'Executive & Decisive' },
+  { id: 'Courteous & Diplomatic', label: 'Courteous & Diplomatic' },
+  { id: 'Firm & Contractual', label: 'Firm & Contractual' },
+  { id: 'Warm & Gracious', label: 'Warm & Gracious' },
+  { id: 'Direct & Objective', label: 'Direct & Objective' },
 ];
 
 export const ToneCalibrator: React.FC<ToneCalibratorProps> = ({
@@ -64,51 +44,46 @@ export const ToneCalibrator: React.FC<ToneCalibratorProps> = ({
   onRevertToOriginal,
 }) => {
   return (
-    <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl p-5 shadow-xs space-y-6">
+    <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl p-4 shadow-xs space-y-4">
       {/* Header & Format Toggle */}
-      <div className="flex items-center justify-between pb-4 border-b border-neutral-200 dark:border-neutral-800">
-        <div>
-          <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider font-mono">
-            Tone & Precision Calibration
-          </h3>
-          <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
-            Target specific executive cadence and structural protocol
-          </p>
-        </div>
+      <div className="flex items-center justify-between pb-3 border-b border-neutral-200 dark:border-neutral-800">
+        <h3 className="text-xs font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider font-mono">
+          Tone Calibration
+        </h3>
 
         {/* Format Selector */}
-        <div className="flex items-center gap-1 p-1 bg-neutral-100 dark:bg-neutral-800 rounded-lg">
+        <div className="flex items-center gap-1 p-0.5 bg-neutral-100 dark:bg-neutral-800 rounded-lg text-xs">
           <button
             type="button"
             onClick={() => setFormat('formal_letter')}
-            className={`px-3 py-1 text-xs font-medium rounded-md transition-all whitespace-nowrap shrink-0 ${
+            className={`px-2.5 py-1 font-medium rounded transition-all whitespace-nowrap cursor-pointer ${
               format === 'formal_letter'
-                ? 'bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 shadow-xs'
+                ? 'bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 shadow-xs font-semibold'
                 : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100'
             }`}
           >
-            Block Letter
+            Letter
           </button>
           <button
             type="button"
             onClick={() => setFormat('executive_memo')}
-            className={`px-3 py-1 text-xs font-medium rounded-md transition-all whitespace-nowrap shrink-0 ${
+            className={`px-2.5 py-1 font-medium rounded transition-all whitespace-nowrap cursor-pointer ${
               format === 'executive_memo'
-                ? 'bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 shadow-xs'
+                ? 'bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 shadow-xs font-semibold'
                 : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100'
             }`}
           >
-            Memorandum
+            Memo
           </button>
         </div>
       </div>
 
       {/* Tone Preset Buttons */}
-      <div className="space-y-2">
-        <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300">
-          Target Executive Stance
+      <div className="space-y-1.5">
+        <label className="block text-[11px] font-semibold text-neutral-700 dark:text-neutral-300">
+          Tone
         </label>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <div className="flex flex-wrap gap-1.5">
           {TONE_OPTIONS.map((item) => {
             const isSelected = currentTone === item.id;
             return (
@@ -116,19 +91,13 @@ export const ToneCalibrator: React.FC<ToneCalibratorProps> = ({
                 key={item.id}
                 type="button"
                 onClick={() => setTone(item.id)}
-                className={`text-left p-3 rounded-lg border transition-all text-xs ${
+                className={`px-3 py-1.5 rounded-lg border text-xs font-medium transition-all cursor-pointer ${
                   isSelected
-                    ? 'border-neutral-900 dark:border-neutral-100 bg-neutral-50 dark:bg-neutral-800/80 text-neutral-900 dark:text-neutral-100 ring-1 ring-neutral-900 dark:ring-neutral-100'
-                    : 'border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 text-neutral-600 dark:text-neutral-400'
+                    ? 'border-neutral-900 dark:border-neutral-100 bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-semibold'
+                    : 'border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 text-neutral-700 dark:text-neutral-300 bg-neutral-50 dark:bg-neutral-800/50'
                 }`}
               >
-                <div className="flex items-center justify-between font-semibold mb-1">
-                  <span>{item.label}</span>
-                  {isSelected && <CheckCircle2 className="w-3.5 h-3.5 text-neutral-900 dark:text-neutral-100" />}
-                </div>
-                <div className="text-[11px] text-neutral-500 dark:text-neutral-400 leading-normal">
-                  {item.desc}
-                </div>
+                {item.label}
               </button>
             );
           })}
@@ -136,27 +105,15 @@ export const ToneCalibrator: React.FC<ToneCalibratorProps> = ({
       </div>
 
       {/* Formality Protocol Level */}
-      <div className="space-y-2">
-        <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300">
-          Protocol & Etiquette Strictness
+      <div className="space-y-1.5">
+        <label className="block text-[11px] font-semibold text-neutral-700 dark:text-neutral-300">
+          Formality
         </label>
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-3 gap-1.5 text-xs">
           {[
-            {
-              id: 'strict_protocol' as FormalityLevel,
-              label: 'Strict Protocol',
-              hint: 'Full formal etiquette & legal care',
-            },
-            {
-              id: 'elevated_business' as FormalityLevel,
-              label: 'Elevated Business',
-              hint: 'Modern C-Suite executive balance',
-            },
-            {
-              id: 'standard_formal' as FormalityLevel,
-              label: 'Standard Formal',
-              hint: 'Polite corporate correspondence',
-            },
+            { id: 'strict_protocol' as FormalityLevel, label: 'Strict' },
+            { id: 'elevated_business' as FormalityLevel, label: 'Elevated' },
+            { id: 'standard_formal' as FormalityLevel, label: 'Standard' },
           ].map((level) => {
             const isSelected = formality === level.id;
             return (
@@ -164,14 +121,13 @@ export const ToneCalibrator: React.FC<ToneCalibratorProps> = ({
                 key={level.id}
                 type="button"
                 onClick={() => setFormality(level.id)}
-                className={`p-2.5 rounded-lg border text-left transition-all ${
+                className={`py-1.5 text-center rounded-lg border transition-all cursor-pointer ${
                   isSelected
-                    ? 'border-neutral-900 dark:border-neutral-100 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100'
+                    ? 'border-neutral-900 dark:border-neutral-100 bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-semibold'
                     : 'border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:border-neutral-300 dark:hover:border-neutral-700'
                 }`}
               >
-                <div className="text-xs font-medium">{level.label}</div>
-                <div className="text-[10px] text-neutral-500 dark:text-neutral-400 mt-0.5">{level.hint}</div>
+                {level.label}
               </button>
             );
           })}
@@ -179,21 +135,19 @@ export const ToneCalibrator: React.FC<ToneCalibratorProps> = ({
       </div>
 
       {/* Specific Custom Directives */}
-      <div className="space-y-1.5">
-        <div className="flex items-center justify-between">
-          <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300">
-            Specific Strategic Directives (Optional)
-          </label>
-          <span className="text-[11px] text-neutral-400 font-mono">e.g., "Emphasize deadline", "Cut word count by 30%"</span>
-        </div>
+      <div className="space-y-1">
+        <label className="block text-[11px] font-semibold text-neutral-700 dark:text-neutral-300">
+          Directives (Optional)
+        </label>
         <input
           type="text"
           value={customInstructions}
           onChange={(e) => setCustomInstructions(e.target.value)}
-          placeholder="e.g. Ensure we express gratitude for the relationship while standing firm on the 20% credit..."
-          className="w-full text-xs px-3 py-2 bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-1 focus:ring-neutral-900 dark:focus:ring-neutral-100 transition-colors"
+          placeholder="e.g. Keep concise, emphasize deadline..."
+          className="w-full text-xs px-3 py-1.5 bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-1 focus:ring-neutral-900 dark:focus:ring-neutral-100 transition-colors"
         />
       </div>
+
 
       {/* Primary Action Buttons */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">

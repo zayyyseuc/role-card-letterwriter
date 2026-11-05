@@ -92,29 +92,27 @@ export const ToneDiagnostics: React.FC<ToneDiagnosticsProps> = ({
       </div>
 
       {/* Quantitative Metric Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
         {[
-          { label: 'Clarity Index', score: analysis.clarityScore, desc: 'Sentence cadence & directness' },
-          { label: 'Formality Rating', score: analysis.formalityScore, desc: 'Protocol & etiquette rigor' },
-          { label: 'Diplomatic Tact', score: analysis.diplomacyScore, desc: 'Friction & boundary balance' },
-          { label: 'Conciseness', score: analysis.concisenessScore, desc: 'Fluff & filler elimination' },
+          { label: 'Clarity', score: analysis.clarityScore },
+          { label: 'Formality', score: analysis.formalityScore },
+          { label: 'Diplomacy', score: analysis.diplomacyScore },
+          { label: 'Conciseness', score: analysis.concisenessScore },
         ].map((stat, i) => (
           <div
             key={i}
-            className="p-3.5 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-800/20"
+            className="p-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-800/20"
           >
             <div className="text-[11px] text-neutral-500 dark:text-neutral-400 font-medium">
               {stat.label}
             </div>
-            <div className="text-2xl font-bold font-mono tabular-nums text-neutral-900 dark:text-neutral-100 mt-1">
+            <div className="text-xl font-bold font-mono tabular-nums text-neutral-900 dark:text-neutral-100 mt-0.5">
               {stat.score}%
-            </div>
-            <div className="text-[10px] text-neutral-400 dark:text-neutral-500 mt-1 truncate">
-              {stat.desc}
             </div>
           </div>
         ))}
       </div>
+
 
       {/* Protocol & Etiquette Checklist */}
       <div className="p-4 border border-neutral-200 dark:border-neutral-800 rounded-lg space-y-3">

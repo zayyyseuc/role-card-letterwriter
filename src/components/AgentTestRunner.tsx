@@ -107,24 +107,14 @@ export const AgentTestRunner: React.FC<AgentTestRunnerProps> = ({
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200">
       <div className="relative w-full max-w-5xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
         {/* Modal Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-200 dark:border-neutral-800 bg-neutral-50/80 dark:bg-neutral-900/80 shrink-0">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold">
-              <ShieldCheck className="w-5 h-5" />
+        <div className="flex items-center justify-between px-6 py-3.5 border-b border-neutral-200 dark:border-neutral-800 bg-neutral-50/80 dark:bg-neutral-900/80 shrink-0">
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold">
+              <ShieldCheck className="w-4 h-4" />
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <h3 className="text-base font-bold text-neutral-900 dark:text-neutral-100">
-                  Agent Test Bench &amp; Script Verification Suite
-                </h3>
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
-                  Automated Evaluation
-                </span>
-              </div>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400">
-                Standardized prompt test runner evaluating Role Card compliance, vagueness gates, and expression retention.
-              </p>
-            </div>
+            <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
+              Agent Test Bench
+            </h3>
           </div>
 
           <div className="flex items-center gap-2">
@@ -133,9 +123,10 @@ export const AgentTestRunner: React.FC<AgentTestRunnerProps> = ({
               disabled={isRunning}
               className="px-3 py-1.5 text-xs font-semibold text-white bg-neutral-900 dark:bg-white dark:text-neutral-900 rounded-lg hover:opacity-90 transition-opacity flex items-center gap-1.5 disabled:opacity-50 cursor-pointer"
             >
-              <Play className="w-3.5 h-3.5 fill-current" />
-              <span>Run All 4 Scripts</span>
+              <Play className="w-3 h-3 fill-current" />
+              <span>Run All</span>
             </button>
+
 
             <button
               onClick={onClose}

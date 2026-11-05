@@ -37,24 +37,14 @@ export const SystemDiagramModal: React.FC<SystemDiagramModalProps> = ({
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200">
       <div className="relative w-full max-w-5xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
         {/* Modal Top Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-200 dark:border-neutral-800 bg-neutral-50/80 dark:bg-neutral-900/80 shrink-0">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-amber-500/10 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center font-mono font-bold text-sm">
+        <div className="flex items-center justify-between px-6 py-3.5 border-b border-neutral-200 dark:border-neutral-800 bg-neutral-50/80 dark:bg-neutral-900/80 shrink-0">
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center font-bold text-sm">
               <Layers className="w-4 h-4" />
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <h3 className="text-base font-bold text-neutral-900 dark:text-neutral-100">
-                  Agent Specifications & System Architecture
-                </h3>
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
-                  v2.4 Active
-                </span>
-              </div>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400">
-                Humorous Apology Ghostwriter &bull; Heeje Lee Knowledge Base &bull; 6-Step Interaction Loop
-              </p>
-            </div>
+            <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
+              Agent Specifications &amp; System Diagram
+            </h3>
           </div>
 
           <button
@@ -69,19 +59,19 @@ export const SystemDiagramModal: React.FC<SystemDiagramModalProps> = ({
         <div className="flex border-b border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 px-6 gap-2 shrink-0 overflow-x-auto text-xs font-medium">
           <button
             onClick={() => setActiveSpecTab('diagram')}
-            className={`py-3 px-3 flex items-center gap-2 border-b-2 transition-colors whitespace-nowrap ${
+            className={`py-2.5 px-3 flex items-center gap-1.5 border-b-2 transition-colors whitespace-nowrap cursor-pointer ${
               activeSpecTab === 'diagram'
                 ? 'border-amber-500 text-amber-600 dark:text-amber-400 font-semibold'
                 : 'border-transparent text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-300'
             }`}
           >
             <Cpu className="w-3.5 h-3.5" />
-            <span>Interactive System Diagram</span>
+            <span>Architecture Diagram</span>
           </button>
 
           <button
             onClick={() => setActiveSpecTab('intent')}
-            className={`py-3 px-3 flex items-center gap-2 border-b-2 transition-colors whitespace-nowrap ${
+            className={`py-2.5 px-3 flex items-center gap-1.5 border-b-2 transition-colors whitespace-nowrap cursor-pointer ${
               activeSpecTab === 'intent'
                 ? 'border-amber-500 text-amber-600 dark:text-amber-400 font-semibold'
                 : 'border-transparent text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-300'
@@ -93,40 +83,41 @@ export const SystemDiagramModal: React.FC<SystemDiagramModalProps> = ({
 
           <button
             onClick={() => setActiveSpecTab('journeys')}
-            className={`py-3 px-3 flex items-center gap-2 border-b-2 transition-colors whitespace-nowrap ${
+            className={`py-2.5 px-3 flex items-center gap-1.5 border-b-2 transition-colors whitespace-nowrap cursor-pointer ${
               activeSpecTab === 'journeys'
                 ? 'border-amber-500 text-amber-600 dark:text-amber-400 font-semibold'
                 : 'border-transparent text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-300'
             }`}
           >
             <User className="w-3.5 h-3.5" />
-            <span>User Journeys (Narratives)</span>
+            <span>User Journeys</span>
           </button>
 
           <button
             onClick={() => setActiveSpecTab('rolecard')}
-            className={`py-3 px-3 flex items-center gap-2 border-b-2 transition-colors whitespace-nowrap ${
+            className={`py-2.5 px-3 flex items-center gap-1.5 border-b-2 transition-colors whitespace-nowrap cursor-pointer ${
               activeSpecTab === 'rolecard'
                 ? 'border-amber-500 text-amber-600 dark:text-amber-400 font-semibold'
                 : 'border-transparent text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-300'
             }`}
           >
             <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Role Card (System Instructions)</span>
+            <span>Role Card</span>
           </button>
 
           <button
             onClick={() => setActiveSpecTab('loop')}
-            className={`py-3 px-3 flex items-center gap-2 border-b-2 transition-colors whitespace-nowrap ${
+            className={`py-2.5 px-3 flex items-center gap-1.5 border-b-2 transition-colors whitespace-nowrap cursor-pointer ${
               activeSpecTab === 'loop'
                 ? 'border-amber-500 text-amber-600 dark:text-amber-400 font-semibold'
                 : 'border-transparent text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-300'
             }`}
           >
             <GitCommit className="w-3.5 h-3.5" />
-            <span>6-Step Interaction Loop</span>
+            <span>Interaction Loop</span>
           </button>
         </div>
+
 
         {/* Tab Content Body */}
         <div className="flex-1 overflow-y-auto p-6 space-y-6">

@@ -4,7 +4,7 @@ import { StationeryPreview } from './components/StationeryPreview';
 import { ToneCalibrator } from './components/ToneCalibrator';
 import { ToneDiagnostics } from './components/ToneDiagnostics';
 import { DiffComparison } from './components/DiffComparison';
-import { SentenceTransformer } from './components/SentenceTransformer';
+
 import { DraftStudioModal } from './components/DraftStudioModal';
 import { TemplateGalleryModal } from './components/TemplateGalleryModal';
 import { StationerySettingsModal } from './components/StationerySettingsModal';
@@ -65,9 +65,7 @@ export default function App() {
   const toggleTheme = () => setIsDark((prev) => !prev);
 
   // Active navigation tab
-  const [activeTab, setActiveTab] = useState<
-    'editor' | 'ghostwriter' | 'diagnostics' | 'draft' | 'library'
-  >('editor');
+  const [activeTab, setActiveTab] = useState<'editor' | 'ghostwriter' | 'diagnostics'>('editor');
 
   // Active document state with fallback to initial template
   const [document, setDocument] = useState<LetterDocument>(() => {
@@ -350,15 +348,7 @@ export default function App() {
       {/* Main Top Bar */}
       <Header
         activeTab={activeTab}
-        setActiveTab={(tab) => {
-          if (tab === 'draft') {
-            setIsDraftStudioOpen(true);
-          } else if (tab === 'library') {
-            setIsTemplateGalleryOpen(true);
-          } else {
-            setActiveTab(tab);
-          }
-        }}
+        setActiveTab={setActiveTab}
         onPrint={handlePrint}
         isDark={isDark}
         toggleTheme={toggleTheme}
@@ -368,60 +358,6 @@ export default function App() {
 
       {/* Main Workspace Viewport */}
       <main className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col">
-        {/* Sub-Header Workspace Utility Strip */}
-        <div className="no-print flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-6 border-b border-neutral-200 dark:border-neutral-800">
-          <div className="flex items-center gap-3">
-            <span className="text-sm font-bold text-neutral-900 dark:text-neutral-100 truncate max-w-md">
-              {document.title || 'Untitled Correspondence'}
-            </span>
-            <span className="text-xs text-neutral-400 dark:text-neutral-500 font-mono" aria-hidden="true">
-              ·
-            </span>
-            <span className="text-xs text-neutral-500 dark:text-neutral-400">
-              {document.format === 'executive_memo' ? 'Memorandum' : 'Block Format Letter'}
-            </span>
-            {document.recipient?.name?.includes('Mom') && (
-              <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 font-semibold">
-                Lee Family Correspondence
-              </span>
-            )}
-          </div>
-
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setActiveTab('ghostwriter')}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-amber-900 dark:text-amber-200 bg-amber-100/80 dark:bg-amber-950/60 hover:bg-amber-200 rounded-lg transition-colors whitespace-nowrap cursor-pointer"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-              <span>Ghostwriter Agent</span>
-            </button>
-
-            <button
-              onClick={handleCreateBlank}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200/60 dark:hover:bg-neutral-800 rounded-lg transition-colors whitespace-nowrap cursor-pointer"
-            >
-              <Plus className="w-3.5 h-3.5" />
-              <span>New Draft</span>
-            </button>
-
-            <button
-              onClick={() => setIsTemplateGalleryOpen(true)}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200/60 dark:hover:bg-neutral-800 rounded-lg transition-colors whitespace-nowrap cursor-pointer"
-            >
-              <FileText className="w-3.5 h-3.5" />
-              <span>Browse Templates</span>
-            </button>
-
-            <button
-              onClick={() => setIsDraftStudioOpen(true)}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200/60 dark:hover:bg-neutral-800 rounded-lg transition-colors whitespace-nowrap cursor-pointer"
-            >
-              <PenLine className="w-3.5 h-3.5" />
-              <span>Draft from Scenario</span>
-            </button>
-          </div>
-        </div>
-
         {/* View Switch: Ghostwriter Studio vs Full Diagnostics View vs Editor */}
         {activeTab === 'ghostwriter' ? (
           <GhostwriterStudio
@@ -430,40 +366,52 @@ export default function App() {
             onOpenTestRunner={() => setIsTestRunnerOpen(true)}
           />
         ) : activeTab === 'diagnostics' ? (
-          <div className="space-y-6">
+          <div className="space-y-4">
             <ToneDiagnostics
               analysis={document.lastAnalysis}
               isLoading={isAnalyzing}
               onRunAnalysis={handleRunAnalysis}
               onApplyFix={handleApplyFix}
             />
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <SentenceTransformer onInsertSentence={handleInsertSentence} />
-              <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl p-5 shadow-xs">
-                <h4 className="text-xs font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider font-mono mb-2">
-                  Protocol Guidelines & Standards
-                </h4>
-                <ul className="text-xs text-neutral-600 dark:text-neutral-400 space-y-2 leading-relaxed">
-                  <li>
-                    <strong className="text-neutral-900 dark:text-neutral-200">Executive Salutation:</strong> Always address by formal surname (e.g. &quot;Dear Ms. Sterling,&quot;) unless a personal first-name relationship has been explicitly established.
-                  </li>
-                  <li>
-                    <strong className="text-neutral-900 dark:text-neutral-200">First Paragraph Law:</strong> State the primary purpose, claim, or decision within the opening 35 words. Never bury the commercial objective under courteous throat-clearing.
-                  </li>
-                  <li>
-                    <strong className="text-neutral-900 dark:text-neutral-200">De-escalation Mechanics:</strong> When addressing breach or disputes, reference contract clauses objectively rather than attributing bad faith or subjective emotion.
-                  </li>
-                  <li>
-                    <strong className="text-neutral-900 dark:text-neutral-200">The 1-Page Constraint:</strong> High-impact executive correspondence rarely exceeds 400 words. Keep auxiliary exhibits in indexed addenda.
-                  </li>
-                </ul>
-              </div>
-            </div>
           </div>
         ) : (
           /* Editor Dual-Column Layout */
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 flex-1 items-start">
+          <div className="space-y-4">
+            {/* Minimal Editor Toolbar */}
+            <div className="no-print flex items-center justify-between pb-3 border-b border-neutral-200 dark:border-neutral-800">
+              <span className="text-sm font-bold text-neutral-900 dark:text-neutral-100 truncate">
+                {document.title || 'Untitled Correspondence'}
+              </span>
+
+              <div className="flex items-center gap-1.5">
+                <button
+                  onClick={handleCreateBlank}
+                  className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  <span>New</span>
+                </button>
+
+                <button
+                  onClick={() => setIsTemplateGalleryOpen(true)}
+                  className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer"
+                >
+                  <FileText className="w-3.5 h-3.5" />
+                  <span>Templates</span>
+                </button>
+
+                <button
+                  onClick={() => setIsDraftStudioOpen(true)}
+                  className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer"
+                >
+                  <PenLine className="w-3.5 h-3.5" />
+                  <span>Draft from Notes</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
 
             {/* Left Column: Draft Inputs, Calibrator, and Sentence Lab (5 cols) */}
             <div className="no-print lg:col-span-5 space-y-6">
@@ -555,10 +503,8 @@ export default function App() {
                   />
                 </div>
               </div>
-
-              {/* Interactive Sentence Lab */}
-              <SentenceTransformer onInsertSentence={handleInsertSentence} />
             </div>
+
 
             {/* Right Column: Live Stationery Preview or Diff Comparison (7 cols) */}
             <div className="lg:col-span-7 flex flex-col h-full sticky top-20">
@@ -633,6 +579,7 @@ export default function App() {
               )}
             </div>
           </div>
+        </div>
         )}
       </main>
 

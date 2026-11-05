@@ -88,11 +88,8 @@ export const DraftStudioModal: React.FC<DraftStudioModalProps> = ({
         <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-200 dark:border-neutral-800">
           <div>
             <h3 className="text-base font-bold text-neutral-900 dark:text-neutral-100">
-              Draft from Notes or Scenario
+              Draft from Notes
             </h3>
-            <p className="text-xs text-neutral-500 dark:text-neutral-400">
-              Provide raw bullet points, constraints, or a prompt to generate an impeccable formal draft
-            </p>
           </div>
           <button
             onClick={onClose}
@@ -108,7 +105,7 @@ export const DraftStudioModal: React.FC<DraftStudioModalProps> = ({
           <div className="space-y-2">
             <span className="text-[11px] font-semibold text-neutral-500 uppercase tracking-wider font-mono flex items-center gap-1.5">
               <Lightbulb className="w-3.5 h-3.5 text-amber-500" />
-              <span>Or Load a High-Stakes Scenario</span>
+              <span>Presets</span>
             </span>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
               {SAMPLE_PROMPTS.map((sample, i) => (
@@ -132,13 +129,13 @@ export const DraftStudioModal: React.FC<DraftStudioModalProps> = ({
           {/* Prompt / Notes Input */}
           <div className="space-y-1.5">
             <label className="block font-semibold text-neutral-700 dark:text-neutral-300">
-              Scenario, Objectives, or Rough Bullet Points
+              Notes or Prompt
             </label>
             <textarea
               value={promptText}
               onChange={(e) => setPromptText(e.target.value)}
-              rows={5}
-              placeholder="e.g. Write to our commercial landlord requesting an 8-week rent abatement during upcoming municipal water main repairs that will block customer parking. Note that our lease has been in good standing for 7 years..."
+              rows={4}
+              placeholder="e.g. Request an 8-week rent abatement during municipal water main repairs that will block customer parking..."
               className="w-full text-xs p-3 bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-1 focus:ring-neutral-900 dark:focus:ring-neutral-100 leading-relaxed font-sans"
             />
           </div>
@@ -147,22 +144,22 @@ export const DraftStudioModal: React.FC<DraftStudioModalProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
               <label className="block font-semibold text-neutral-700 dark:text-neutral-300">
-                Document Protocol
+                Format
               </label>
               <select
                 value={format}
                 onChange={(e) => setFormat(e.target.value as LetterFormat)}
                 className="w-full text-xs p-2.5 bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-neutral-100"
               >
-                <option value="formal_letter">Standard Formal Business Letter</option>
-                <option value="executive_memo">Executive Memorandum</option>
+                <option value="formal_letter">Standard Business Letter</option>
+                <option value="executive_memo">Memorandum</option>
                 <option value="board_letter">Board Governance Letter</option>
               </select>
             </div>
 
             <div className="space-y-1.5">
               <label className="block font-semibold text-neutral-700 dark:text-neutral-300">
-                Target Executive Tone
+                Tone
               </label>
               <select
                 value={tone}
@@ -197,12 +194,12 @@ export const DraftStudioModal: React.FC<DraftStudioModalProps> = ({
             {isDrafting ? (
               <>
                 <div className="w-3.5 h-3.5 border-2 border-white dark:border-neutral-900 border-t-transparent rounded-full animate-spin" />
-                <span>Drafting Correspondence...</span>
+                <span>Drafting...</span>
               </>
             ) : (
               <>
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>Generate Executive Draft</span>
+                <span>Generate Draft</span>
               </>
             )}
           </button>

@@ -19,8 +19,8 @@ export const DiffComparison: React.FC<DiffComparisonProps> = ({
       <div className="flex items-center justify-between pb-3 border-b border-neutral-200 dark:border-neutral-800">
         <div className="flex items-center gap-2">
           <GitCompare className="w-4 h-4 text-neutral-900 dark:text-neutral-100" />
-          <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider font-mono">
-            Calibration Audit & Transformation Log
+          <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100 font-mono">
+            Audit Log
           </h3>
         </div>
         <div className="flex items-center gap-2">
@@ -35,7 +35,7 @@ export const DiffComparison: React.FC<DiffComparisonProps> = ({
             className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-white bg-neutral-900 dark:bg-neutral-100 dark:text-neutral-900 rounded-lg hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors"
           >
             <Check className="w-3.5 h-3.5" />
-            <span>Keep Calibrated Draft</span>
+            <span>Keep Changes</span>
           </button>
         </div>
       </div>
@@ -44,7 +44,7 @@ export const DiffComparison: React.FC<DiffComparisonProps> = ({
       <div className="p-3.5 bg-neutral-50 dark:bg-neutral-800/40 border border-neutral-200 dark:border-neutral-800 rounded-lg text-xs">
         <div className="font-semibold text-neutral-900 dark:text-neutral-100 mb-1 flex items-center gap-1.5">
           <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-          <span>Strategic Tonal Rationale</span>
+          <span>Rationale</span>
         </div>
         <p className="text-neutral-600 dark:text-neutral-300 font-sans leading-relaxed">
           {improvedResult.rationale}
@@ -53,13 +53,13 @@ export const DiffComparison: React.FC<DiffComparisonProps> = ({
 
       {/* Specific Changes List */}
       <div className="space-y-3">
-        <div className="text-xs font-semibold text-neutral-700 dark:text-neutral-300 font-mono uppercase tracking-wider">
-          Specific Transformations ({improvedResult.diffChanges.length})
+        <div className="text-xs font-semibold text-neutral-700 dark:text-neutral-300 font-mono">
+          Changes ({improvedResult.diffChanges.length})
         </div>
 
         {improvedResult.diffChanges.length === 0 ? (
           <p className="text-xs text-neutral-500">
-            Broad structural cadence and word choice were tightened across the full body.
+            Cadence and phrasing tightened across the body.
           </p>
         ) : (
           <div className="space-y-3">
@@ -72,7 +72,7 @@ export const DiffComparison: React.FC<DiffComparisonProps> = ({
                   {/* Original Excerpt */}
                   <div className="space-y-1">
                     <span className="text-[10px] font-mono text-neutral-400 uppercase">
-                      Prior Phrasing
+                      Before
                     </span>
                     <div className="p-2 bg-red-50/60 dark:bg-red-950/20 border border-red-200/60 dark:border-red-900/40 rounded text-neutral-700 dark:text-neutral-300 font-serif leading-relaxed line-through">
                       "{change.originalExcerpt}"
@@ -82,7 +82,7 @@ export const DiffComparison: React.FC<DiffComparisonProps> = ({
                   {/* Revised Excerpt */}
                   <div className="space-y-1">
                     <span className="text-[10px] font-mono text-neutral-400 uppercase">
-                      Executive Revision
+                      After
                     </span>
                     <div className="p-2 bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-200/60 dark:border-emerald-900/40 rounded text-neutral-900 dark:text-neutral-100 font-serif font-medium leading-relaxed">
                       "{change.revisedExcerpt}"

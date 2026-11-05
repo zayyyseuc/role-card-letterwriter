@@ -29,11 +29,8 @@ export const StationerySettingsModal: React.FC<StationerySettingsModalProps> = (
           <div>
             <h3 className="text-base font-bold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
               <SlidersHorizontal className="w-4 h-4" />
-              <span>Stationery & Protocol Settings</span>
+              <span>Format & Letterhead</span>
             </h3>
-            <p className="text-xs text-neutral-500 dark:text-neutral-400">
-              Customize corporate letterhead, reference numbering, and formal party coordinates
-            </p>
           </div>
           <button
             onClick={onClose}
@@ -50,11 +47,8 @@ export const StationerySettingsModal: React.FC<StationerySettingsModalProps> = (
             <div className="flex items-center justify-between">
               <div>
                 <span className="font-bold text-neutral-900 dark:text-neutral-100 text-sm">
-                  Executive Letterhead
+                  Letterhead
                 </span>
-                <p className="text-[11px] text-neutral-500 mt-0.5">
-                  Display institutional brand header atop formal correspondence
-                </p>
               </div>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input

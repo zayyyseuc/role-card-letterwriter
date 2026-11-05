@@ -31,11 +31,8 @@ export const TemplateGalleryModal: React.FC<TemplateGalleryModalProps> = ({
           <div>
             <h3 className="text-base font-bold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
               <BookOpen className="w-4 h-4" />
-              <span>Executive Correspondence Library</span>
+              <span>Template Library</span>
             </h3>
-            <p className="text-xs text-neutral-500 dark:text-neutral-400">
-              Curated formal correspondence archetypes tested in executive, legal, and board settings
-            </p>
           </div>
           <button
             onClick={onClose}
